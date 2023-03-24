@@ -1,5 +1,5 @@
 
-class SwapiService{
+export default class SwapiService{
 
     _apiBase='https://swapi.dev/api'
   
@@ -26,7 +26,7 @@ class SwapiService{
       return res.results;
     }
   
-     getPlanet(id){
+    getPlanet(id){
       return this.getResource(`/planets/${id}`)
     }
   
