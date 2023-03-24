@@ -4,24 +4,27 @@ import './header.css';
 
 const Header = () => {
   return (
-    <div className="header d-flex">
+    <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
+      <div className="container-fluid d-flex">
       <h3>
-        <a href="#">
+        <a className="navbar-brand" href="#">
           Star DB
         </a>
       </h3>
-      <ul className="d-flex">
-        <li>
-          <a href="#">People</a>
+      <ul className="navbar-nav me-auto">
+        <li className='nav-item'>
+          <a className="nav-link active" href="#">People</a>
         </li>
-        <li>
-          <a href="#">Planets</a>
+        <li className='nav-item'>
+          <a className="nav-link active" href="#">Planets</a>
         </li>
-        <li>
-          <a href="#">Starships</a>
+        <li className='nav-item'>
+          <a className="nav-link active" href="#">Starships</a>
         </li>
       </ul>
     </div>
+    </nav>
+    
   );
 };
 
