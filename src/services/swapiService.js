@@ -1,3 +1,4 @@
+import { startTransition } from "react";
 
 export default class SwapiService{
 
@@ -14,35 +15,77 @@ export default class SwapiService{
   
     async getAllPeople(){
       const res= await this.getResource(`/people/`);
-      return res.results;
+      return res.results.map(this._transformPerson);
     }
   
-     getPerson(id){
-      return this.getResource(`/people/${id}`)
+    async getPerson(id){
+      const person = await this.getResource(`/people/${id}/`);
+      return this._transformPerson(person);
     }
   
     async getAllPlanets(){
       const res= await this.getResource(`/planets/`);
-      return res.results;
+      return res.results.map(this._transformPlanet);
     }
   
-    getPlanet(id){
-      return this.getResource(`/planets/${id}`)
+    async getPlanet(id){
+      const planet = await this.getResource(`/planets/${id}/`)
+      return this._transformPlanet(planet);
     }
   
     async getAllStarships(){
       const res= await this.getResource(`/starships/`);
-      return res.results;
+      return res.results.map(this._transformStarShip);
     }
   
-     getStarsip(id){
-      return this.getResource(`/starships/${id}`)
+    async getStarsip(id){
+      const starship = this.getResource(`/starships/${id}/`);
+      return this._transformStarShip(starship);
+    }
+
+    _extractId(item){
+      const idRegExp=/\/([0-9]*)\/$/;
+      return item.url.match(idRegExp)[1];
+    }
+    _transformPlanet(planet){
+      
+      return{
+        id: this._extractId(planet),
+        name: planet.name,
+        population: planet.population,
+        rotationPeriod: planet.rotation_period,
+        diameter: planet.diameter
+      }
+    }
+
+    _transformPerson(person){
+      return{
+        id: this._extractId(person),
+        name: person.name,
+        gender: person.gender,
+        height: person.height,
+        hairColor: person.hair_color,
+        eyeColor: person.eye_color
+
+      }
+    }
+
+    _transformStarShip(starship){
+      return{
+        id: this._extractId(starship),
+        name: starship.name,
+        model: starship.model,
+        manufacturer: starship.manufacturer,
+        length: starship.length,
+        hyperdriveRating: starship.hyperdrive_rating,
+        consumables: starship.consumables
+      }
     }
   }
   
-  const swapi = new SwapiService();
-  swapi.getAllPeople().then((people)=>{
-    people.forEach(element => {
-      console.log(element.name)
-    });
-  });
+  // const swapi = new SwapiService();
+  // swapi.getAllPeople().then((people)=>{
+  //   people.forEach(element => {
+  //     console.log(element.name)
+  //   });
+  // });

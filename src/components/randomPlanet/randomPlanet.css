@@ -1,6 +1,7 @@
 .details{
     margin-left: 8rem;
     width: 63rem;
+    padding: auto;
 }
 .random-planet {
     display: flex;
@@ -25,3 +26,8 @@
   .random-planet .list-group-item .term {
     margin-right: .5rem;
   }
+.spinner{
+  position: relative;
+  display: flex;
+  align-items: center
+}
