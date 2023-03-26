@@ -14,7 +14,10 @@ const App = () => {
 
       <RandomPlanet />
       <div className='listDetails d-flex'>
+        <div>
+          
         <ItemList />
+        </div>
         <PersonDetails />
       </div>
     </div>
