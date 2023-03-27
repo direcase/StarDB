@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import SwapiService from '../../services/swapiService';
 
 import Header from '../header';
 import ItemList from '../itemList';
@@ -7,21 +8,40 @@ import RandomPlanet from '../randomPlanet/randomPlanet';
 
 import './app.css';
 
-const App = () => {
-  return (
-    <div>
-      <Header />
+export default class App extends Component {
 
-      <RandomPlanet />
-      <div className='listDetails d-flex'>
-        <div>
+   swapiService = new SwapiService();
+
+  render(){
+    return (
+      <div>
+        <Header />
+  
+        <RandomPlanet />
+        
+        <div className='listDetails row mb2'>
+          <div className='col-md-4'>
+            
+          <ItemList getData={this.swapiService.getAllPlanets}
+          renderItem={(item)=>(<span>{item.name} <button>+</button></span>)} />
+          </div>
+          <div className='col-md-8'>
+            <PersonDetails />
+          </div>
           
-        <ItemList />
         </div>
-        <PersonDetails />
-      </div>
-    </div>
-  )
-};
 
-export default App
+
+        <div className='listDetails d-flex'>
+          <div>
+            
+          <ItemList getData={this.swapiService.getAllStarships}
+          renderItem={(item)=>item.name} />
+          </div>
+          <PersonDetails />
+        </div>
+      </div>
+    )
+  }
+  
+};

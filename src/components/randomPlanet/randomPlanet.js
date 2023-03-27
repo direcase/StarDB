@@ -69,7 +69,7 @@ const PlanetView=({planet})=>{
     const { id, name, population, rotationPeriod, diameter} = planet;
     return(
         <React.Fragment>
-                <img width='200rem' height='auto' className="rounded float-left" src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} />
+                <img width='200rem' height='auto' className="rounded float-left" src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt='planet img' />
                 
                 <div className="details-row float-right">
                     <ul className="list-group list-group-flush">

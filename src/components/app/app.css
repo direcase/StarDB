@@ -2,8 +2,7 @@
     margin: 0 6rem 0 6rem;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .listDetails{
-        display: block;
     }
 }

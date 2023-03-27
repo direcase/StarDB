@@ -1,4 +1,4 @@
-import { startTransition } from "react";
+
 
 export default class SwapiService{
 
@@ -13,32 +13,32 @@ export default class SwapiService{
      return body;
     }
   
-    async getAllPeople(){
+     getAllPeople = async ()=>{
       const res= await this.getResource(`/people/`);
       return res.results.map(this._transformPerson).slice(0,5);
     }
   
-    async getPerson(id){
+     getPerson= async(id)=>{
       const person = await this.getResource(`/people/${id}/`);
       return this._transformPerson(person);
     }
   
-    async getAllPlanets(){
+     getAllPlanets = async ()=>{
       const res= await this.getResource(`/planets/`);
       return res.results.map(this._transformPlanet);
     }
   
-    async getPlanet(id){
+     getPlanet = async(id)=>{
       const planet = await this.getResource(`/planets/${id}/`)
       return this._transformPlanet(planet);
     }
   
-    async getAllStarships(){
+     getAllStarships = async ()=>{
       const res= await this.getResource(`/starships/`);
       return res.results.map(this._transformStarShip);
     }
   
-    async getStarsip(id){
+     getStarsip=async(id)=>{
       const starship = this.getResource(`/starships/${id}/`);
       return this._transformStarShip(starship);
     }
@@ -63,6 +63,7 @@ export default class SwapiService{
         id: this._extractId(person),
         name: person.name,
         gender: person.gender,
+        birthYear: person.birth_year,
         height: person.height,
         hairColor: person.hair_color,
         eyeColor: person.eye_color
