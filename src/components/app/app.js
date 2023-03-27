@@ -3,6 +3,7 @@ import SwapiService from '../../services/swapiService';
 
 import Header from '../header';
 import ItemList from '../itemList';
+import PeoplePage from '../peoplePage';
 import PersonDetails from '../personDetails/personDetails';
 import RandomPlanet from '../randomPlanet/randomPlanet';
 
@@ -18,6 +19,8 @@ export default class App extends Component {
         <Header />
   
         <RandomPlanet />
+
+        <PeoplePage />
         
         <div className='listDetails row mb2'>
           <div className='col-md-4'>

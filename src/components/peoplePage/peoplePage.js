@@ -1,25 +1,42 @@
-import React from "react";
+import React, { Component } from "react";
 import SwapiService from "../../services/swapiService";
+import ItemList from "../itemList/itemList";
+import PersonDetails from "../personDetails/personDetails";
 
 import './peoplePage.css'
 
-const Row=()=>{
+const Row=({left, right})=>{
     return(
         <div className='row mb2'>
           <div className="col-md-6">
-            <ItemList getData={this.swapiService.getAllPeople} 
-            renderItem={(item)=>`${item.name} (${item.gender}, ${item.birthYear})`}     />
+            {left}
           </div>
           <div className="col-md-6">
-            <PersonDetails />
+            {right}
           </div>
         </div>
 
     )
 }
 
-export class PeoplePage extends Comment{
+export default class PeoplePage extends Component{
     swapiService = new SwapiService();
 
-    
+    render(){
+      const itemList = (
+        <ItemList getData={this.swapiService.getAllPeople} 
+        renderItem={(item)=>`${item.name} (${item.gender}, ${item.birthYear})`} />
+        
+      );
+
+      const detialItem = (
+        <PersonDetails />
+      );
+
+      return(
+        <Row left={itemList} right={detialItem} />
+      )
+
+
+    }
 }
