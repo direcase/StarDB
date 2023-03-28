@@ -1,22 +1,28 @@
 import React, { Component } from "react";
 import SwapiService from "../../services/swapiService";
+import ErrorIndicator from "../errorIndicator/errorIndicator";
 import ItemList from "../itemList/itemList";
 import PersonDetails from "../personDetails/personDetails";
+import Row from "../row";
 
 import './peoplePage.css'
 
-const Row=({left, right})=>{
-    return(
-        <div className='row mb2'>
-          <div className="col-md-6">
-            {left}
-          </div>
-          <div className="col-md-6">
-            {right}
-          </div>
-        </div>
+class ErrorBoundry extends Component{
+  state = {
+    hasError: false
+  }
 
-    )
+  componentDidCatch(){
+    this.setState({
+      hasError:true
+    })
+  }
+  render(){
+    if( this.state.hasError){
+      return <ErrorIndicator />
+    }
+    return this.props.children;
+  }
 }
 
 export default class PeoplePage extends Component{
@@ -25,7 +31,11 @@ export default class PeoplePage extends Component{
     render(){
       const itemList = (
         <ItemList getData={this.swapiService.getAllPeople} 
-        renderItem={(item)=>`${item.name} (${item.gender}, ${item.birthYear})`} />
+         >
+          {
+            (item)=>(`${item.name} (${item.gender}, ${item.birthYear})`)
+          }
+        </ItemList>
         
       );
 
@@ -34,7 +44,9 @@ export default class PeoplePage extends Component{
       );
 
       return(
-        <Row left={itemList} right={detialItem} />
+        <ErrorBoundry>
+          <Row left={itemList} right={detialItem} />
+        </ErrorBoundry>
       )
 
 

@@ -12,11 +12,6 @@ export default class RandomPlanet extends Component{
          planet: {},
          loading: true,
          error: false,
-        // id: null,
-        // name: null,
-        // population: null,
-        // rotationPeriod: null,
-        // diameter: null
     };
 
     constructor(){
