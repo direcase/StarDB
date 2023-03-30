@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import SwapiService from '../../services/swapiService';
-import ErrorButton from '../errorButton';
 import ErrorIndicator from '../errorIndicator/errorIndicator';
 
 import Header from '../header';
-import ItemList from '../itemList';
-import PeoplePage from '../peoplePage';
-import PersonDetails from '../personDetails/personDetails';
-import RandomPlanet from '../randomPlanet/randomPlanet';
+import PersonDetails, {Record} from '../personDetails/personDetails';
+import Row from '../row';
 
 import './app.css';
 
@@ -28,14 +25,27 @@ export default class App extends Component {
     if(this.state.hasError){
       return <ErrorIndicator />
     }
+
+    const leftItem = (
+      <PersonDetails personId="5" getData={this.swapiService.getPerson} getImg={this.swapiService._getPersonImg} >
+        <Record field="gender" label="Gender" />
+        <Record field="eyeColor" label="Eye Color" />
+      </PersonDetails>
+    );
+
+    const rightItem = (
+      <PersonDetails personId="3" getData={this.swapiService.getStarsip} getImg={this.swapiService._getStarsipImg} />
+    );
     return (
       <div >
         <Header />
         <div className='main'>
-          <RandomPlanet />
-          <ErrorButton />
+          {/* <RandomPlanet /> */}
+          
 
-          <PeoplePage />
+          {/* <PeoplePage /> */}
+
+          <Row left={leftItem} right={rightItem} />
 
           {/* <div className='listDetails row mb2'>
             <div className='col-md-4'>

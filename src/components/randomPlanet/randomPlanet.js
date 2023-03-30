@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SwapiServise from '../../services/swapiService'
+import ErrorButton from "../errorButton";
 import ErrorIndicator from "../errorIndicator/errorIndicator";
 import Spinner from "../spinner";
 import './randomPlanet.css';
@@ -52,6 +53,7 @@ export default class RandomPlanet extends Component{
                 {errorMessage}
                 {spinner}
                 {content}
+                <ErrorButton />
             </div>
         )
     }

@@ -27,10 +27,18 @@ class ErrorBoundry extends Component{
 
 export default class PeoplePage extends Component{
     swapiService = new SwapiService();
-
+    state = {
+      selectedPerson: 6,
+    }
+    onPersonSelected = (id) =>{
+      this.setState({
+        selectedPerson: id
+      })
+    }
     render(){
       const itemList = (
         <ItemList getData={this.swapiService.getAllPeople} 
+          onItemSelected={this.onPersonSelected}
          >
           {
             (item)=>(`${item.name} (${item.gender}, ${item.birthYear})`)
@@ -40,7 +48,7 @@ export default class PeoplePage extends Component{
       );
 
       const detialItem = (
-        <PersonDetails />
+        <PersonDetails personId={this.state.selectedPerson} />
       );
 
       return(

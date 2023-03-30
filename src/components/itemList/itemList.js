@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import SwapiService from "../../services/swapiService";
 import Spinner from "../spinner";
 
 import './itemList.css';
@@ -6,6 +7,7 @@ import './itemList.css';
 export default class ItemList extends Component{
     
 
+    swapiservise = new SwapiService();
     state = {
         itemList:null,
     }
@@ -27,6 +29,7 @@ export default class ItemList extends Component{
             return(
                 <li className="list-group-item list-group-item-action"
                 key={id}
+                onClick = {()=> this.props.onItemSelected(id)}
             
                 >
                     {label}
